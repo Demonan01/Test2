@@ -1,0 +1,49 @@
+package behaviours.t4.automationsInFault
+
+import com.onresolve.jira.groovy.user.FormField
+
+	FormField ffIsContinuousImprovement = getFieldById("customfield_15492") // Is a Continuous Improvement or Change Required
+    FormField ffEstimatedInvestment 	= getFieldById("customfield_16158") // Estimated Investment cost impact 
+    FormField ffEstimatedPiece 			= getFieldById("customfield_16159") // Estimated Piece cost impact
+    FormField ffEstimatedMass			= getFieldById("customfield_16160") // Estimated mass
+    FormField ffObsolescence 			= getFieldById("customfield_16174") // Obsolescence
+    FormField ffPartsAdded 				= getFieldById("customfield_16175") // Part(s) Added
+    FormField ffPartsDeleted 			= getFieldById("customfield_16176") // Part(s) Deleted
+    FormField ffIntroductionPhase 		= getFieldById("customfield_16076") // IntroductionPhase
+    FormField ffReleaseDate 			= getFieldById("customfield_11011") // Release Date
+    FormField ffLeadTime 				= getFieldById("customfield_16183") // Lead Time for Change
+    FormField ffReasonChange			= getFieldById("customfield_15471") // Reason for Change
+
+
+if (getFieldScreen().getName() == "P4: Is an Engineering Continuous Improvement Required") {
+    
+    	if(ffIsContinuousImprovement.getValue() == "Yes") {
+        
+        [ffEstimatedInvestment,
+         ffEstimatedPiece,
+         ffEstimatedMass,
+         ffObsolescence,
+         ffPartsAdded,
+         ffPartsDeleted,
+         ffIntroductionPhase,
+         ffReleaseDate,
+         ffLeadTime,
+         ffReasonChange
+         ]*.setHidden(false)*.setRequired(false)
+          
+    	} else {
+        
+        [ffEstimatedInvestment,
+         ffEstimatedPiece,
+         ffEstimatedMass,
+         ffObsolescence,
+         ffPartsAdded,
+         ffPartsDeleted,
+         ffIntroductionPhase,
+         ffReleaseDate,
+         ffLeadTime,
+         ffReasonChange
+        ]*.setHidden(true)*.setRequired(false)
+    	}
+    
+ }
